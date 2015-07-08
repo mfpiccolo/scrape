@@ -6,3 +6,6 @@ authors = ["Mike Piccolo <mfpiccolo@gmail.com>"]
 [lib]
 name = "scrape"
 crate-type = ["dylib"]
+
+[dependencies.hyper]
+git = "https://github.com/hyperium/hyper.git"

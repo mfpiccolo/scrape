@@ -4,9 +4,9 @@ module Scrape
   extend FFI::Library
   ffi_lib './target/debug/libscrape.dylib'
 
-  attach_function :ruby_reverse, [:string], :string
-  attach_function :concat, [:string, :string], :string
+  attach_function :get_body, [:string], :string
 end
 
-puts Scrape.ruby_reverse("Don't use palindrome") == "emordnilap esu t'noD" ? "Gone Dun It!" : "Uhhhh????"
-puts Scrape.concat("This is", " a sentence.") == "This is a sentence." ? "Gone Dun It!" : "Uhhhh????"
+body = Scrape.get_body("http://doc.rust-lang.org")[191..230]
+
+puts body.strip == "<title>Rust Documentation</title>" ? "Gone Dun It!" : "Uhhhh????"
