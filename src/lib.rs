@@ -1,5 +1,5 @@
 extern crate hyper;
-use std::sync::{Arc, Mutex};
+use std::sync::Arc;
 use std::thread;
 use hyper::Client;
 use std::io::Read;
