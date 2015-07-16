@@ -4,16 +4,7 @@ module Scrape
   extend FFI::Library
   ffi_lib './target/debug/libscrape.dylib'
 
-  class TwoNumbers < FFI::Struct
-    layout :first, :int32,
-           :second, :int32
-  end
-
-  attach_function :add_struct_vals, [TwoNumbers.by_value], :int32
+  attach_function :run_threads, [], :void
 end
 
-tn = Scrape::TwoNumbers.new
-tn[:first] = 10
-tn[:second] = 20
-
-puts Scrape.add_struct_vals(tn) == 30 ? "Gone Dun It!" : "Uhhhh????"
+Scrape.run_threads()
