@@ -4,9 +4,16 @@ module Scrape
   extend FFI::Library
   ffi_lib './target/debug/libscrape.dylib'
 
-  attach_function :get_body, [:string], :string
+  class TwoNumbers < FFI::Struct
+    layout :first, :int32,
+           :second, :int32
+  end
+
+  attach_function :add_struct_vals, [TwoNumbers.by_value], :int32
 end
 
-body = Scrape.get_body("http://doc.rust-lang.org")[191..230]
+tn = Scrape::TwoNumbers.new
+tn[:first] = 10
+tn[:second] = 20
 
-puts body.strip == "<title>Rust Documentation</title>" ? "Gone Dun It!" : "Uhhhh????"
+puts Scrape.add_struct_vals(tn) == 30 ? "Gone Dun It!" : "Uhhhh????"
