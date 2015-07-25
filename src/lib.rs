@@ -11,22 +11,22 @@ pub struct TwoNumbers {
 }
 
 impl TwoNumbers {
-    fn plus_one_to_each(self) -> TwoNumbers {
-        let mut tn = self;
-        tn.first += 1;
-        tn.second += 1;
-        tn
-    }
+  fn plus_one_to_each(self) -> TwoNumbers {
+    let mut tn = self;
+    tn.first += 1;
+    tn.second += 1;
+    tn
+  }
 }
 
 #[no_mangle]
 pub extern fn add_one_to_vals(numbers: TwoNumbers) -> TwoNumbers {
-   numbers.plus_one_to_each()
+  numbers.plus_one_to_each()
 }
 
 #[no_mangle]
 pub extern fn add_struct_vals(numbers: TwoNumbers) -> i32 {
-    numbers.first + numbers.second
+  numbers.first + numbers.second
 }
 
 #[repr(C)]
