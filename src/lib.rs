@@ -24,10 +24,12 @@ pub extern fn run_threads() {
     .into_iter()
     .map(|thread| thread.join())
     .collect();
+
   println!("All threads joined. Full responses are:");
   for response in responses.into_iter() {
     println!("The response have the following lengths: {:?}", response.ok());
   }
+
   let end_time = time::now();
   println!("{:?}", (end_time - start_time));
 }
