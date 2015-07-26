@@ -9,3 +9,6 @@ crate-type = ["dylib"]
 
 [dependencies.hyper]
 git = "https://github.com/hyperium/hyper.git"
+
+[dependencies]
+time = "0.1"
